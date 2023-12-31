@@ -6,7 +6,7 @@ from rest_framework.decorators import api_view, authentication_classes, permissi
 from django.contrib.auth.models import User
 from authentication.serializers import RegisterSerializer
 from rest_framework import generics
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login as login_user
 
 
 class RegisterView(generics.CreateAPIView):
@@ -32,7 +32,7 @@ def login(request):
     if not user:
         return Response({'error': 'Failed to login.'}, status=400)
 
-    login(request, user)
+    login_user(request, user)
     return Response({'user': user.username}, status=200)
 
 
