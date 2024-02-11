@@ -30,7 +30,7 @@ def login(request):
 
     user = authenticate(request=request, username=username, password=password)
     if not user:
-        return Response({'error': 'Failed to login.'}, status=400)
+        return Response({'error': 'Not authorized.'}, status=403)
 
     login_user(request, user)
     return Response({'user': user.username}, status=200)

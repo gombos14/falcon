@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-#f^wrse4m^z$%t5l9x1dhje1pk0i$y*0w^7mc^kiyr+_8j1z=0
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'authentication',
+    'furniture',
     'rest_framework',
     'django_extensions',
 ]
@@ -80,7 +81,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'falcon',
-        'USER': 'postgres',
+        'USER': 'user',
         'PASSWORD': 'password',
         'HOST': 'localhost',
         'PORT': '5432',
