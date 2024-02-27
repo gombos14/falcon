@@ -33,7 +33,7 @@ def login(request):
         return Response({'error': 'Not authorized.'}, status=403)
 
     login_user(request, user)
-    return Response({'user': user.username}, status=200)
+    return Response({'user': user.pk}, status=200)
 
 
 @api_view(['GET'])
