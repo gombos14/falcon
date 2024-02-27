@@ -24,7 +24,10 @@ class Order(models.Model):
 
     def save(self, *args, **kwargs):
         wage = self.furniture.price
-        if discount := self.furniture.discount:
-            wage -= wage * discount.percentage
+        try:
+            if discount := self.furniture.discount:
+                wage -= wage * discount.percentage
+        except Furniture.discount.RelatedObjectDoesNotExist:
+            pass
         self.wage = wage
         super(Order, self).save(*args, **kwargs)
