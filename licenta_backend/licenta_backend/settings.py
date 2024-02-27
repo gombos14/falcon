@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'authentication',
     'furniture',
+    'order',
     'rest_framework',
     'django_extensions',
 ]
