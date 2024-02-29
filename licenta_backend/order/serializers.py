@@ -1,9 +1,12 @@
 from rest_framework import serializers
 
 from order.models import Order
+from furniture.serializers import FurnitureSerializer
 
 
 class OrderSerializer(serializers.ModelSerializer):
+    furniture = FurnitureSerializer()
+
     class Meta:
         model = Order
-        fields = ['user', 'furniture', 'period']
+        fields = ['id', 'user', 'furniture', 'period', 'wage']

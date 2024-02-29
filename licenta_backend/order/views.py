@@ -6,3 +6,6 @@ from order.serializers import OrderSerializer
 class OrderCreateView(generics.ListCreateAPIView):
     queryset = Order.objects.all()
     serializer_class = OrderSerializer
+
+    def get_queryset(self):
+        pass
