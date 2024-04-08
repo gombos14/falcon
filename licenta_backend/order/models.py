@@ -1,3 +1,5 @@
+import datetime
+
 from django.db import models
 from django.contrib.auth import get_user_model
 from furniture.models import Furniture
@@ -18,6 +20,7 @@ class Order(models.Model):
     furniture = models.ForeignKey(Furniture, on_delete=models.CASCADE, related_name='orders', null=False, blank=False)
     period = models.CharField(max_length=255, choices=PERIOD_CHOICES, null=False, blank=False, default='undetermined')
     wage = models.DecimalField(max_digits=6, decimal_places=2, null=False, blank=False, default=0)
+    renting_starts_at = models.DateField(default=datetime.date.today, null=False, blank=False)
 
     def __str__(self):
         return 'Order %d: %s - %s' % (self.id, self.user, self.furniture.title)
