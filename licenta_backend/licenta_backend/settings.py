@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'authentication',
     'furniture',
     'order',
+    'chat',
     'rest_framework',
     'django_extensions',
 ]
