@@ -9,7 +9,7 @@ h11==0.14.0
 httpcore==1.0.5
 httpx==0.26.0
 idna==3.7
-pgpt_python==0.1.0
+pgpt_python @ git+https://github.com/gombos14/pgpt-python
 psycopg2-binary==2.9.9
 pydantic==2.7.0
 pydantic_core==2.18.1
