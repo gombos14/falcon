@@ -1,22 +1,19 @@
-// Copyright 2021, the Flutter project authors. Please see the AUTHORS file
-// for details. All rights reserved. Use of this source code is governed by a
-// BSD-style license that can be found in the LICENSE file.
-
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import 'auth.dart';
 import 'data.dart';
 import 'data/repository.dart';
-import 'screens/order_details.dart';
-import 'screens/orders.dart';
+import 'screens/assistant.dart';
 import 'screens/furniture_details.dart';
 import 'screens/main.dart';
+import 'screens/order_details.dart';
+import 'screens/orders.dart';
 import 'screens/scaffold.dart';
 import 'screens/settings.dart';
 import 'screens/sign_in.dart';
-import 'widgets/furniture_list.dart';
 import 'widgets/fade_transition_page.dart';
+import 'widgets/furniture_list.dart';
 
 final appShellNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'app shell');
 final booksNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'books shell');
@@ -48,7 +45,7 @@ class _FalconstoreState extends State<Falconstore> {
       routerConfig: GoRouter(
         refreshListenable: auth,
         debugLogDiagnostics: true,
-        initialLocation: '/home',
+        initialLocation: '/settings',
         redirect: (context, state) {
           final signedIn = FalconAuth.of(context).signedIn;
           if (state.uri.toString() != '/sign-in' && !signedIn) {
@@ -63,8 +60,9 @@ class _FalconstoreState extends State<Falconstore> {
               return FalconScaffold(
                 selectedIndex: switch (state.uri.path) {
                   var p when p.startsWith('/home') => 0,
-                  var p when p.startsWith('/orders') => 1,
-                  var p when p.startsWith('/settings') => 2,
+                  var p when p.startsWith('/assistant') => 1,
+                  var p when p.startsWith('/orders') => 2,
+                  var p when p.startsWith('/settings') => 3,
                   _ => 0,
                 },
                 child: child,
@@ -199,6 +197,18 @@ class _FalconstoreState extends State<Falconstore> {
                     ],
                   ),
                 ],
+              ),
+              GoRoute(
+                path: '/assistant',
+                builder: (context, state) {
+                  // Use a builder to get the correct BuildContext
+                  // TODO (johnpryan): remove when https://github.com/flutter/flutter/issues/108177 lands
+                  return Builder(
+                    builder: (context) {
+                      return AssistantScreen();
+                    },
+                  );
+                },
               ),
               GoRoute(
                 path: '/orders',

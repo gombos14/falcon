@@ -4,7 +4,7 @@ import 'package:bookstore/src/data.dart';
 import 'package:http/http.dart' as http;
 
 class FalconAPI {
-  final String _baseUrl = 'http://192.168.1.9:8080';
+  final String _baseUrl = 'http://192.168.1.19:8080';
 
   List<Furniture> parseFurniture(String responseBody) {
     final parsed =
@@ -40,6 +40,18 @@ class FalconAPI {
       return parsed.map<Order>((json) => Order.fromJson(json)).toList();
     } else {
       throw Exception('Failed to fetch orders from the API');
+    }
+  }
+
+  Future<String> getChatResponse(String message) async {
+    final response = await http.post(
+      Uri.parse('$_baseUrl/chat/prompt/'),
+      body: {'prompt': message},
+    );
+    if (response.statusCode == 200) {
+      return response.body;
+    } else {
+      throw Exception('Failed to get chat response from the API');
     }
   }
 }

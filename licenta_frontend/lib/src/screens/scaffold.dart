@@ -26,13 +26,18 @@ class FalconScaffold extends StatelessWidget {
         body: child,
         onDestinationSelected: (idx) {
           if (idx == 0) goRouter.go('/home/popular');
-          if (idx == 1) goRouter.go('/orders');
-          if (idx == 2) goRouter.go('/settings');
+          if (idx == 1) goRouter.go('/assistant');
+          if (idx == 2) goRouter.go('/orders');
+          if (idx == 3) goRouter.go('/settings');
         },
         destinations: const [
           AdaptiveScaffoldDestination(
             title: 'Furniture',
             icon: Icons.countertops,
+          ),
+          AdaptiveScaffoldDestination(
+            title: 'Assistent',
+            icon: Icons.assistant,
           ),
           AdaptiveScaffoldDestination(
             title: 'orders',
