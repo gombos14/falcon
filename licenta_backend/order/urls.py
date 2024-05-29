@@ -3,9 +3,8 @@ from rest_framework.generics import ListCreateAPIView
 
 from order.models import Order
 from order.serializers import OrderSerializer
-
+from order.views import OrderView
 
 urlpatterns = [
-    path('orders/', ListCreateAPIView.as_view(queryset=Order.objects.all(), serializer_class=OrderSerializer),
-         name='orders'),
+    path('orders/', OrderView.as_view(), name='orders'),
 ]

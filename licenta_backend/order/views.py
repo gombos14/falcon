@@ -1,11 +1,12 @@
 from rest_framework import generics
 from order.models import Order
-from order.serializers import OrderSerializer
+from order.serializers import OrderSerializer, OrderCreateSerializer
 
 
-class OrderCreateView(generics.ListCreateAPIView):
+class OrderView(generics.ListCreateAPIView):
     queryset = Order.objects.all()
-    serializer_class = OrderSerializer
 
-    def get_queryset(self):
-        pass
+    def get_serializer_class(self):
+        if self.request.method == 'POST':
+            return OrderCreateSerializer
+        return OrderSerializer
