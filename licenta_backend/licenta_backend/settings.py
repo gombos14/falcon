@@ -152,3 +152,5 @@ LOGGING = {
         "level": "DEBUG",
     },
 }
+
+PRIVATE_GPT_URL = "http://192.168.1.13:8001"

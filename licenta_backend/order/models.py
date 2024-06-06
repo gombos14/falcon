@@ -1,8 +1,11 @@
 import datetime
+import os
 
 from django.db import models
 from django.contrib.auth import get_user_model
+from django.conf import settings
 from furniture.models import Furniture
+from pgpt_python.client import PrivateGPTApi
 
 User = get_user_model()
 
@@ -34,3 +37,18 @@ class Order(models.Model):
             pass
         self.wage = wage
         super(Order, self).save(*args, **kwargs)
+
+        file_name = f'{self.user.id}_order_{self.id}.txt'
+        with open(file_name, 'w') as write_file:
+            write_file.write(f'Order {self.id} details:\n')
+            write_file.write(f'Furniture title: {self.furniture.title}\n')
+            write_file.write(f'Renting period: {self.period}\n')
+            write_file.write(f'Wage: {self.wage}\n')
+            write_file.write(f'Renting starts at: {self.renting_starts_at}')
+
+        client = PrivateGPTApi(base_url=settings.PRIVATE_GPT_URL, timeout=300.0)
+        with open(file_name, 'rb') as rf:
+            doc_id = client.ingestion.ingest_file(file=rf).data[0].doc_id
+            print('File successfully ingested: %s' % doc_id)
+
+        os.remove(file_name)
