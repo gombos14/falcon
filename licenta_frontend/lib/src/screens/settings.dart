@@ -1,7 +1,3 @@
-// Copyright 2021, the Flutter project authors. Please see the AUTHORS file
-// for details. All rights reserved. Use of this source code is governed by a
-// BSD-style license that can be found in the LICENSE file.
-
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:url_launcher/link.dart';
@@ -44,55 +40,21 @@ class SettingsContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Column(
-        children: [
-          ...[
-            Text(
-              'Settings',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-            FilledButton(
-              onPressed: () {
-                FalconAuth.of(context).signOut();
-              },
-              child: const Text('Sign out'),
-            ),
-            const Text('Example using the Link widget:'),
-            Link(
-              uri: Uri.parse('/books/all/book/0'),
-              builder: (context, followLink) => TextButton(
-                onPressed: followLink,
-                child: const Text('/books/all/book/0'),
-              ),
-            ),
-            const Text('Example using GoRouter.of(context).go():'),
-            TextButton(
-              child: const Text('/books/all/book/0'),
-              onPressed: () {
-                GoRouter.of(context).go('/books/all/book/0');
-              },
-            ),
-          ].map((w) => Padding(padding: const EdgeInsets.all(8), child: w)),
-          const Text('Displays a dialog on the root Navigator:'),
-          TextButton(
-            onPressed: () => showDialog<String>(
-              context: context,
-              builder: (context) => AlertDialog(
-                title: const Text('Alert!'),
-                content: const Text('The alert description goes here.'),
-                actions: [
-                  TextButton(
-                    onPressed: () => Navigator.pop(context, 'Cancel'),
-                    child: const Text('Cancel'),
-                  ),
-                  TextButton(
-                    onPressed: () => Navigator.pop(context, 'OK'),
-                    child: const Text('OK'),
-                  ),
-                ],
-              ),
-            ),
-            child: const Text('Show Dialog'),
-          )
-        ],
-      );
+      children: [
+        ...[
+          Text(
+            'Settings',
+            style: Theme.of(context).textTheme.headlineMedium,
+          ),
+          FilledButton(
+            onPressed: () {
+              FalconAuth.of(context).signOut();
+            },
+            child: const Text('Sign out'),
+          ),
+
+
+        ]
+      ]
+  );
 }

@@ -2,6 +2,8 @@ import 'package:bookstore/src/data/falconAPI.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_chat_bubble/chat_bubble.dart';
 
+import '../auth.dart';
+
 
 class AssistantScreen extends StatefulWidget {
   AssistantScreen({
@@ -30,7 +32,8 @@ class AssistantScreenState extends State<AssistantScreen> {
       };
       chats.add(chatMessageMap);
 
-      FalconAPI().getChatResponse(messageEditingController.text).then((value) {
+      FalconAPI().getChatResponse(messageEditingController.text,
+          FalconAuth.of(context).getUserId.toString()).then((value) {
         Map<String, dynamic> chatMessageMap = {
           "sentByMe": false,
           "message": value
@@ -46,9 +49,7 @@ class AssistantScreenState extends State<AssistantScreen> {
   }
 
   Widget chatMessages() {
-    // bubbles = [];
-
-    return ListView.builder(itemCount: 1, itemBuilder: (context, index) {
+    return ListView.builder(padding: EdgeInsets.only(bottom: 70), itemCount: 1, itemBuilder: (context, index) {
       return Column(
           children: [
             for (var chat in chats)
@@ -128,7 +129,7 @@ class AssistantScreenState extends State<AssistantScreen> {
                   Align(
                     alignment: Alignment.bottomLeft,
                     child: Container(
-                      padding: EdgeInsets.only(left: 10,bottom: 10,top: 10),
+                      padding: EdgeInsets.only(left: 10, bottom: 10, top: 10),
                       height: 60,
                       width: double.infinity,
                       color: Colors.white,

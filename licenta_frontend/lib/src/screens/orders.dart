@@ -1,23 +1,17 @@
-// Copyright 2021, the Flutter project authors. Please see the AUTHORS file
-// for details. All rights reserved. Use of this source code is governed by a
-// BSD-style license that can be found in the LICENSE file.
-
-import 'package:bookstore/src/data/falconAPI.dart';
 import 'package:flutter/material.dart';
 
-import '../auth.dart';
 import '../data/order.dart';
 import '../widgets/orders_list.dart';
 
 class OrdersScreen extends StatelessWidget {
   final String title;
   final ValueChanged<Order> onTap;
-  final List<Order> orders;
+  final Future<List<Order>> ordersFuture;
 
   const OrdersScreen({
     required this.onTap,
-    required this.orders,
-    this.title = 'Orders',
+    required this.ordersFuture,
+    this.title = 'My Orders',
     super.key,
   });
 
@@ -26,9 +20,24 @@ class OrdersScreen extends StatelessWidget {
         appBar: AppBar(
           title: Text(title),
         ),
-        body: OrderList(
-          orders: orders,
-          onTap: onTap,
+        body: FutureBuilder<List<Order>>(
+          future: ordersFuture,
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return Center(child: CircularProgressIndicator());
+            } else if (snapshot.hasError) {
+              return Center(child: Text('Error: ${snapshot.error}'));
+            } else if (snapshot.hasData) {
+              final orders = snapshot.data!;
+
+              return OrderList(
+                orders: orders,
+                onTap: onTap,
+              );
+            } else {
+              return Center(child: Text('No orders found'));
+            }
+          },
         ),
       );
 

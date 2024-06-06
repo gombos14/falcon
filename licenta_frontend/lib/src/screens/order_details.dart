@@ -1,12 +1,6 @@
-// Copyright 2021, the Flutter project authors. Please see the AUTHORS file
-// for details. All rights reserved. Use of this source code is governed by a
-// BSD-style license that can be found in the LICENSE file.
-
 import 'package:flutter/material.dart';
 
 import '../data.dart';
-import '../data/repository.dart';
-import '../widgets/furniture_list.dart';
 
 class OrderDetailsScreen extends StatelessWidget {
   final Order order;
@@ -32,6 +26,18 @@ class OrderDetailsScreen extends StatelessWidget {
               Text(
                 order.furniture.description,
                 style: Theme.of(context).textTheme.titleMedium,
+              ),
+              Text(
+                'Period: ${order.period}',
+                style: Theme.of(context).textTheme.bodyMedium,
+              ),
+              Text(
+                'Monthly Wage: ${order.wage.toString()}',
+                style: Theme.of(context).textTheme.bodyMedium,
+              ),
+              Text(
+                'Starting from: ${order.rentingStartsAt.toString()}',
+                style: Theme.of(context).textTheme.bodyMedium,
               ),
             ],
           ),

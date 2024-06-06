@@ -1,7 +1,3 @@
-// Copyright 2021, the Flutter project authors. Please see the AUTHORS file
-// for details. All rights reserved. Use of this source code is governed by a
-// BSD-style license that can be found in the LICENSE file.
-
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:url_launcher/link.dart';
@@ -50,10 +46,29 @@ class FurnitureDetailsScreen extends StatelessWidget {
             ),
             ElevatedButton(
               child: const Text('Order now'),
-              onPressed: () {
-                FalconAPI().createOrder(
+              onPressed: () async {
+                var orderCreated = FalconAPI().createOrder(
                     furniture!.id,
                     FalconAuth.of(context).getUserId
+                );
+                var message = '';
+                if (await orderCreated) {
+                  message = 'Order created successfully';
+                }
+                else {
+                  message = 'Error creating order';
+                }
+                await showDialog<String>(
+                    context: context,
+                    builder: (BuildContext context) => AlertDialog(
+                      title: Text(message),
+                      actions: <Widget>[
+                        TextButton(
+                          onPressed: () => Navigator.pop(context, 'OK'),
+                          child: const Text('OK'),
+                        ),
+                      ],
+                    ),
                 );
               },
             ),

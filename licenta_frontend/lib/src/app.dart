@@ -216,9 +216,9 @@ class _FalconstoreState extends State<Falconstore> {
                   return FadeTransitionPage<dynamic>(
                     key: state.pageKey,
                     child: Builder(builder: (context) {
-                      List<Order> orders = orderRepository.getAllOrders(FalconAuth.of(context).getUserId);
+                      Future<List<Order>> orders = orderRepository.getAllOrders(FalconAuth.of(context).getUserId);
                       return OrdersScreen(
-                        orders: orders,
+                        ordersFuture: orders,
                         onTap: (order) {
                           GoRouter.of(context)
                               .go('/orders/order/${order.id}');

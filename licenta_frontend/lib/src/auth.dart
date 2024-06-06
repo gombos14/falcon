@@ -1,7 +1,3 @@
-// Copyright 2021, the Flutter project authors. Please see the AUTHORS file
-// for details. All rights reserved. Use of this source code is governed by a
-// BSD-style license that can be found in the LICENSE file.
-
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
@@ -32,7 +28,7 @@ class FalconAuth extends ChangeNotifier {
     };
 
     final response = await http.post(
-      Uri.parse('http://192.168.1.19:8080/authentication/login/'),
+      Uri.parse('http://192.168.1.22:8080/authentication/login/'),
       body: requestBody,
     );
 

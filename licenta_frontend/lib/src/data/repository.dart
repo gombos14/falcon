@@ -25,9 +25,10 @@ class FurnitureRepository {
     ...allFurniture.where((furniture) => furniture.isNew),
   ];
 
-  List<Furniture> getAllFurniture() {
-    FalconAPI().fetchFurniture().then((value) => allFurniture = value);
-    return allFurniture;
+  Future<List<Furniture>> getAllFurniture() {
+    var fetch = FalconAPI().fetchFurniture();
+    fetch.then((value) => allFurniture = value);
+    return fetch;
   }
 }
 
@@ -42,8 +43,9 @@ class OrderRepository {
     return allOrders.where((order) => order.id == int.parse(id)).first;
   }
 
-  List<Order> getAllOrders(int userId) {
-    FalconAPI().getOrders(userId).then((value) => allOrders = value);
-    return allOrders;
+  Future<List<Order>> getAllOrders(int userId) {
+    var fetch = FalconAPI().getOrders(userId);
+    fetch.then((value) => allOrders = value);
+    return fetch;
   }
 }
