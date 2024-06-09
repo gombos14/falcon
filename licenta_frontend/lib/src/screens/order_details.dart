@@ -18,7 +18,11 @@ class OrderDetailsScreen extends StatelessWidget {
         body: Center(
           child: Column(
             children: [
-              Image.network(order.furniture.image),
+              Image.network(
+                  order.furniture.image,
+                  errorBuilder: (_, __, ___) =>
+                    Image.network('https://picsum.photos/250'),
+              ),
               Text(
                 order.furniture.title,
                 style: Theme.of(context).textTheme.headlineMedium,

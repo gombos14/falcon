@@ -28,7 +28,7 @@ class FalconAuth extends ChangeNotifier {
     };
 
     final response = await http.post(
-      Uri.parse('http://192.168.1.22:8080/authentication/login/'),
+      Uri.parse('http://192.168.1.26:8080/authentication/login/'),
       body: requestBody,
     );
 

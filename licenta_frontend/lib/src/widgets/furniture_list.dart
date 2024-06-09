@@ -55,7 +55,11 @@ class FurnitureList extends StatelessWidget {
                   subtitle: Text(
                     snapshot.data![index].description,
                   ),
-                  trailing: Image.network(snapshot.data![index].image),
+                  trailing: Image.network(
+                      snapshot.data![index].image,
+                      errorBuilder: (_, __, ___) =>
+                          Image.network('https://picsum.photos/250'),
+                  ),
                   onTap: onTap != null
                       ? () => onTap!(snapshot.data![index])
                       : null,

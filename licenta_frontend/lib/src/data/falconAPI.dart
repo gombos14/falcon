@@ -1,10 +1,10 @@
 import 'dart:convert';
 
-import 'package:bookstore/src/data.dart';
+import 'package:falcon/src/data.dart';
 import 'package:http/http.dart' as http;
 
 class FalconAPI {
-  final String _baseUrl = 'http://192.168.1.22:8080';
+  final String _baseUrl = 'http://192.168.1.26:8080';
 
   List<Furniture> parseFurniture(String responseBody) {
     final parsed =
@@ -21,11 +21,11 @@ class FalconAPI {
     }
   }
 
-  Future<bool> createOrder(int furnitureId, int userId) async {
+  Future<bool> createOrder(int furnitureId, int userId, {String period = 'undetermined'}) async {
     Map<String, String> orderData = {
       'furniture': furnitureId.toString(),
       'user': userId.toString(),
-      'period': 'undetermined',
+      'period': period,
     };
     final response = await http.post(Uri.parse('$_baseUrl/order/orders/'),
         body: orderData);

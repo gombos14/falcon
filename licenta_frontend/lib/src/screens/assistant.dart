@@ -1,4 +1,4 @@
-import 'package:bookstore/src/data/falconAPI.dart';
+import 'package:falcon/src/data/falconAPI.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_chat_bubble/chat_bubble.dart';
 
@@ -71,44 +71,6 @@ class AssistantScreenState extends State<AssistantScreen> {
               ),
             ),
           ]
-      );
-    });
-  }
-
-  Widget chatmsgs() {
-    return ListView.builder(itemCount: 1, itemBuilder: (context, index) {
-      return Column(
-        children: [
-          ChatBubble(
-            clipper: ChatBubbleClipper1(type: BubbleType.sendBubble),
-            alignment: Alignment.topRight,
-            margin: EdgeInsets.only(top: 20),
-            backGroundColor: Colors.blue,
-            child: Container(
-              constraints: BoxConstraints(
-                maxWidth: MediaQuery.of(context).size.width * 0.7,
-              ),
-              child: Text(
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-                style: TextStyle(color: Colors.white),
-              ),
-            ),
-          ),
-          ChatBubble(
-            clipper: ChatBubbleClipper1(type: BubbleType.receiverBubble),
-            backGroundColor: Color(0xffE7E7ED),
-            margin: EdgeInsets.only(top: 20),
-            child: Container(
-              constraints: BoxConstraints(
-                maxWidth: MediaQuery.of(context).size.width * 0.7,
-              ),
-              child: Text(
-                "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat",
-                style: TextStyle(color: Colors.black),
-              ),
-            ),
-          ),
-        ],
       );
     });
   }
