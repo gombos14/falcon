@@ -52,8 +52,6 @@ class SettingsContent extends StatelessWidget {
             },
             child: const Text('Sign out'),
           ),
-
-
         ]
       ]
   );

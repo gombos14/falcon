@@ -40,31 +40,4 @@ class OrdersScreen extends StatelessWidget {
           },
         ),
       );
-
-  // @override
-  // Widget build(BuildContext context) =>
-  //     FutureBuilder<List<Order>>(
-  //       future: FalconAPI().getOrders(FalconAuth.of(context).getUserId),
-  //       builder: (context, snapshot) {
-  //         if (snapshot.connectionState == ConnectionState.waiting) {
-  //           return const Center(
-  //             child: CircularProgressIndicator(),
-  //           );
-  //         }
-  //         if (snapshot.hasError) {
-  //           return const Center(
-  //             child: Text('Error loading orders'),
-  //           );
-  //         }
-  //         return  Scaffold(
-  //           appBar: AppBar(
-  //             title: Text(title),
-  //           ),
-  //           body: OrderList(
-  //             orders: snapshot.data!,
-  //             onTap: onTap,
-  //           ),
-  //         );
-  //       },
-  //     );
 }

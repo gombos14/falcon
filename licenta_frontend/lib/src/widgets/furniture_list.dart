@@ -12,23 +12,6 @@ class FurnitureList extends StatelessWidget {
     super.key,
   });
 
-  // @override
-  // Widget build(BuildContext context) => ListView.builder(
-  //       itemCount: furniture.length,
-  //       itemBuilder: (context, index) =>
-  //           ListTile(
-  //             title: Text(
-  //               furniture[index].title,
-  //             ),
-  //             subtitle: Text(
-  //               furniture[index].description,
-  //             ),
-  //             trailing: Image.network(furniture[index].image),
-  //             onTap: onTap != null
-  //                 ? () => onTap!(furniture[index])
-  //                 : null,
-  //           ),
-  //     );
 
   @override
   Widget build(BuildContext context) =>

@@ -73,8 +73,6 @@ class _FalconstoreState extends State<Falconstore> {
                 pageBuilder: (context, state, child) {
                   return FadeTransitionPage<dynamic>(
                     key: state.pageKey,
-                    // Use a builder to get the correct BuildContext
-                    // TODO (johnpryan): remove when https://github.com/flutter/flutter/issues/108177 lands
                     child: Builder(builder: (context) {
                       return MainScreen(
                         onTap: (idx) {
@@ -101,8 +99,6 @@ class _FalconstoreState extends State<Falconstore> {
                     path: '/home/popular',
                     pageBuilder: (context, state) {
                       return FadeTransitionPage<dynamic>(
-                        // Use a builder to get the correct BuildContext
-                        // TODO (johnpryan): remove when https://github.com/flutter/flutter/issues/108177 lands
                         key: state.pageKey,
                         child: Builder(
                           builder: (context) {
@@ -135,8 +131,6 @@ class _FalconstoreState extends State<Falconstore> {
                     pageBuilder: (context, state) {
                       return FadeTransitionPage<dynamic>(
                         key: state.pageKey,
-                        // Use a builder to get the correct BuildContext
-                        // TODO (johnpryan): remove when https://github.com/flutter/flutter/issues/108177 lands
                         child: Builder(
                           builder: (context) {
                             return FurnitureList(
@@ -168,8 +162,6 @@ class _FalconstoreState extends State<Falconstore> {
                     pageBuilder: (context, state) {
                       return FadeTransitionPage<dynamic>(
                         key: state.pageKey,
-                        // Use a builder to get the correct BuildContext
-                        // TODO (johnpryan): remove when https://github.com/flutter/flutter/issues/108177 lands
                         child: Builder(
                           builder: (context) {
                             return FurnitureList(
@@ -201,8 +193,6 @@ class _FalconstoreState extends State<Falconstore> {
               GoRoute(
                 path: '/assistant',
                 builder: (context, state) {
-                  // Use a builder to get the correct BuildContext
-                  // TODO (johnpryan): remove when https://github.com/flutter/flutter/issues/108177 lands
                   return Builder(
                     builder: (context) {
                       return AssistantScreen();
@@ -231,8 +221,6 @@ class _FalconstoreState extends State<Falconstore> {
                   GoRoute(
                     path: 'order/:orderId',
                     builder: (context, state) {
-                      // Use a builder to get the correct BuildContext
-                      // TODO (johnpryan): remove when https://github.com/flutter/flutter/issues/108177 lands
                       return Builder(builder: (context) {
                         return OrderDetailsScreen(
                           order: orderRepository.getOrder(state.pathParameters['orderId']!),
@@ -256,8 +244,6 @@ class _FalconstoreState extends State<Falconstore> {
           GoRoute(
             path: '/sign-in',
             builder: (context, state) {
-              // Use a builder to get the correct BuildContext
-              // TODO (johnpryan): remove when https://github.com/flutter/flutter/issues/108177 lands
               return Builder(
                 builder: (context) {
                   return SignInScreen(
